@@ -1,14 +1,12 @@
-<?php
-
 interface users {
     public function getFirstname();
     public function getLastname();
     public function getEmail();
     public function getPassword();
-    public function setFirstname();
-    public function setLastname();
-    public function setEmail();
-    public function setPassword();
+    public function setFirstname($firstname);
+    public function setLastname($lastname);
+    public function setEmail($email);
+    public function setPassword($password);
 }
 
 class gmailUser implements users  {

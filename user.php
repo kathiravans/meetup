@@ -1,8 +1,14 @@
 <?php
-// Geting user's first name and updating user's firstname.
+
 interface users {
     public function getFirstname();
+    public function getLastname();
+    public function getEmail();
+    public function getPassword();
     public function setFirstname();
+    public function setLastname();
+    public function setEmail();
+    public function setPassword();
 }
 
 class gmailUser implements users  {
@@ -13,11 +19,36 @@ class gmailUser implements users  {
         $firstname =  $this->userdetails['firstname'];
         return $firstname;
      }
+     public function getLastname() {
+        $lastname =  $this->userdetails['firstname'];
+        return $lastname;
+     }
+     
+     public function getEmail() {
+        $email =  $this->userdetails['email'];
+        return $email;
+     }
+     public function getPassword() {
+        $password =  $this->userdetails['password'];
+        return $password;
+     }
+     
      public function setFirstname($newfirstname) {
         $this->userdetails['firstname'] = $newfirstname;
         // update into database
      }
-     
+     public function setLastname($lastname) {
+        $this->userdetails['lastname'] = $lastname;
+        // update into database
+     }
+     public function setEmail($email) {
+        $this->userdetails['email'] = $email;
+        // update into database
+     }
+     public function setpassword($password) {
+        $this->userdetails['password'] = $password;
+        // update into database
+     }
 }
 
 class twitterUser implements users  {
@@ -28,29 +59,64 @@ class twitterUser implements users  {
         $firstname =  $this->userdetails['firstname'];
         return $firstname;
      }
+     public function getLastname() {
+        $firstname =  $this->userdetails['firstname'];
+        return $firstname;
+     }
+     public function getEmail() {
+        $email =  $this->userdetails['email'];
+        return $email;
+     }
+     public function getPassword() {
+        $password =  $this->userdetails['password'];
+        return $password;
+     }
+     
+     
      public function setFirstname($newfirstname) {
         $this->userdetails['firstname'] = $newfirstname;
         // update into database
      }
+     public function setLastname($lastname) {
+        $this->userdetails['lastname'] = $lastname;
+        // update into database
+     }
+     public function setEmail($email) {
+        $this->userdetails['email'] = $email;
+        // update into database
+     }
+     public function setpassword($password) {
+        $this->userdetails['password'] = $password;
+        // update into database
+     }
+     
 }
 
 class loggeduser {
-    
-    function getFirstname($loggedaccount) {
+   
+    function getUserdetails($loggedaccount) {
         $loggedobj = new $loggedaccount();
-        $loggedobj->getFirstname();
+        $userdetails['firstname'] = $loggedobj->getFirstname();
+        $userdetails['lastname'] = $loggedobj->getLastname();
+        $userdetails['email'] = $loggedobj->getEmail();
+        $userdetails['password'] = $loggedobj->getPassword();
+        return $userdetails;
     }
-     function setFirstname($loggedaccount,$newfirstname) {
+    
+    function setUserdetails($loggedaccount,$newUserdetails) {
         $loggedobj = new $loggedaccount();
-        $loggedobj->setFirstname($newfirstname);
+        $loggedobj->setFirstname($newUserdetails['firstname']);
+        $lastname = $loggedobj->setLastname($newUserdetails['lastname']);
+        $email = $loggedobj->setEmail($newUserdetails['email']);
+        $password = $loggedobj->setPassword($newUserdetails['password']);
     }
 }
 
 $obj = new loggeduser();
-$obj->getFirstname('twitterUser');
-$obj->setFirstname('twitterUser',$newfirstname);
+$obj->getUserdetails('twitterUser');
+$obj->setUserdetails('twitterUser',$newUserdetails);
 
 $obj->getFirstname('gmailUser');
-$obj->setFirstname('gmailUser',$newfirstname);
+$obj->setFirstname('gmailUser',$newUserdetails);
 
 

@@ -1,3 +1,4 @@
+<?php
 interface users {
     public function getFirstname();
     public function getLastname();

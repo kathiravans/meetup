@@ -1,4 +1,5 @@
-nterface users {
+<?php
+interface users {
     public function getFirstname();
     public function getLastname();
     public function getEmail();

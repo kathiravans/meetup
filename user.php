@@ -1,21 +1,13 @@
 <?php
-interface users {
-    public function getFirstname();
-    public function getLastname();
-    public function getEmail();
-    public function getPassword();
-    public function setFirstname($firstname);
-    public function setLastname($lastname);
-    public function setEmail($email);
-    public function setPassword($password);
-}
+require_once 'interfaces/names.php';
+require_once 'interfaces/emailpassword.php';
 
 /*
- *This class is used to get and set users firstname,lastname,email and password
+ *@uses This class is used to get and set users firstname,lastname,email and password
  *@Authir Kathir.
  */
 
-class gmailUser implements users  {
+class gmailUser implements names, emailpassword  {
     
     /**
      *Constructor
@@ -98,12 +90,14 @@ class gmailUser implements users  {
 
 
 /*
- *This class is used to get and set users firstname,lastname,email and password
+ * @uses This class is used to get and set users firstname,lastname,email and password
  */
-class twitterUser implements users  {
+class twitterUser implements names, emailpassword {
      /**
      *Constructor
+     *@access private $db
      *@param array $db
+     *@access private $loggeduserid
      *@param int $loogeduserid
      *@return array login user details(firstname,lastname,email,password)
      */
@@ -151,6 +145,7 @@ class twitterUser implements users  {
      public function setFirstname($newfirstname) {
         $this->userdetails['firstname'] = $newfirstname;
         // update into database
+        // return true if inserted else false
      }
       /*
      *Function - updating lastname
